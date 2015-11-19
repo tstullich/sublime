@@ -6,7 +6,7 @@ function *index(next) {
     yield next;
     // compile
     var fn = jade.compileFile('index.jade');
-    this.body = fn({pageTitle:'Sublime Handmades', youAreUsingJade:true});
+    this.body = fn({pageTitle:'Sublime Handmades | Home', youAreUsingJade:true});
 }
 
 var app = koa();
