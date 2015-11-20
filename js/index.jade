@@ -1,13 +1,38 @@
 doctype html
-html(lang="en")
+html(lang='en')
   include ./includes/header.jade
   body
      div(class='jumbotron')
         div(class='container')
-           h1
-              | Welcome to Sublime Handmades!
+           h1 Welcome to Sublime Handmades!
+           h2 About Me
            p
                | I  am passionate about everything handmade and have been knitting and crocheting for over 45 years. I have now decided to turn my skill into business. Scarfs, shawls, hats are my main interest but I also make baby blankets. I also love to take on custom orders if time permits!
                | I only use high quality yarns mostly with animal fibers (sometimes with a little blend of acrylic) as I don't like the feel of acrylic yarns only. 
-
-  include ./includes/footer.jade
+     div(class='container')
+        div(class='row')
+           div(class='col-md-4')
+              div(class='thumbnail')
+                 img(src='http://vignette1.wikia.nocookie.net/scarfheroes/images/e/e6/Royal-stewart-tartan-lambswool-scarf.jpg/revision/latest?cb=20150322230625')
+                 div(class='caption')
+                 h3 Scarves
+                 p Description of Scarves here
+                 p
+                    a(class='btn btn-default', role='button' href='#') See more >>
+           div(class='col-md-4')
+              div(class='thumbnail')
+                 img(src='https://img1.etsystatic.com/006/0/7999688/il_340x270.473108861_k0lq.jpg' width='242' height='200')
+                 div(class='caption')
+                 h3 Shawls
+                 p Description of Shawls here
+                 p
+                    a(class='btn btn-default', role='button' href='#') See more >>
+           div(class='col-md-4')
+              div(class='thumbnail')
+                 img(src='https://www.babies-and-kids.com/images/produkte/cache/mi10/108396-35509-WEB.jpg')
+                 div(class='caption')
+                 h3 Hats
+                 p Description of Hats here
+                 p
+                    a(class='btn btn-default', role='button' href='#') See more >>
+     include ./includes/footer.jade
