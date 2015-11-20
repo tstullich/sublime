@@ -2,6 +2,8 @@ const jade = require('jade');
 const koala = require('koala');
 const router = require('koa-router')();
 
+console.log('Starting up...')
+
 var app = koala();
 
 router.get('/', function *index(next) {
@@ -16,7 +18,13 @@ router.get('/contact', function *contact(next) {
     this.body = pageGen({pageTitle:'Sublime Handmades | Contact Me'});
 });
 
+router.get('/about', function *about(next) {
+    yield next;
+    var pageGen = jade.compileFile('js/about.jade');
+    this.body = pageGen({pageTitle:'Sublime Handmades | About Me'});
+});
+
 app.use(router.routes());
 app.use(router.allowedMethods());
 app.listen(3000);
-console.log('listening on port 3000 in directory %s', __dirname);
+console.log('Listening on port 3000 in directory %s', __dirname);
