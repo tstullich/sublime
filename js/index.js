@@ -1,17 +1,22 @@
-var jade = require('jade');
-var mount = require('koa-mount')
-var koa = require('koa')
+const jade = require('jade');
+const koala = require('koala');
+const router = require('koa-router')();
 
-function *index(next) {
+var app = koala();
+
+router.get('/', function *index(next) {
     yield next;
-    // compile
-    var fn = jade.compileFile('index.jade');
-    this.body = fn({pageTitle:'Sublime Handmades | Home'});
-}
+    var pageGen = jade.compileFile('js/index.jade');
+    this.body = pageGen({pageTitle:'Sublime Handmades | Home'});
+});
 
-var app = koa();
+router.get('/contact', function *contact(next) {
+    yield next;
+    var pageGen = jade.compileFile('js/contact.jade');
+    this.body = pageGen({pageTitle:'Sublime Handmades | Contact Me'});
+});
 
-app.use(mount(index));
+app.use(router.routes());
+app.use(router.allowedMethods());
 app.listen(3000);
-console.log('listening on port 3000');
-console.log('Path: %s', this.path)
+console.log('listening on port 3000 in directory %s', __dirname);
