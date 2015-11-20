@@ -4,7 +4,11 @@ const router = require('koa-router')();
 
 console.log('Starting up...')
 
-var app = koala();
+var app = koala({
+    fileServer: {
+        maxAge: '1 minute'
+    }
+});
 
 router.get('/', function *index(next) {
     yield next;
