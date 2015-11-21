@@ -2,3 +2,7 @@
 /node_modules/*
 /images/*
 /assets/*
+/fonts/*
+/img/*
+/less/*
+*.gz

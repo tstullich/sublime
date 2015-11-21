@@ -1,38 +1,272 @@
 doctype html
 html(lang='en')
-  include ./includes/header.jade
-  body
-     div(class='jumbotron')
-        div(class='container')
-           h1 Welcome to Sublime Handmades!
-           h2 About Me
-           p
-               | I  am passionate about everything handmade and have been knitting and crocheting for over 45 years. I have now decided to turn my skill into business. Scarfs, shawls, hats are my main interest but I also make baby blankets. I also love to take on custom orders if time permits!
-               | I only use high quality yarns mostly with animal fibers (sometimes with a little blend of acrylic) as I don't like the feel of acrylic yarns only. 
-     div(class='container')
-        div(class='row')
-           div(class='col-md-4')
-              div(class='thumbnail')
-                 img(src='http://vignette1.wikia.nocookie.net/scarfheroes/images/e/e6/Royal-stewart-tartan-lambswool-scarf.jpg/revision/latest?cb=20150322230625')
-                 div(class='caption')
-                 h3 Scarves
-                 p Description of Scarves here
-                 p
-                    a(class='btn btn-default', role='button' href='#') See more >>
-           div(class='col-md-4')
-              div(class='thumbnail')
-                 img(src='https://img1.etsystatic.com/006/0/7999688/il_340x270.473108861_k0lq.jpg' width='242' height='200')
-                 div(class='caption')
-                 h3 Shawls
-                 p Description of Shawls here
-                 p
-                    a(class='btn btn-default', role='button' href='#') See more >>
-           div(class='col-md-4')
-              div(class='thumbnail')
-                 img(src='https://www.babies-and-kids.com/images/produkte/cache/mi10/108396-35509-WEB.jpg')
-                 div(class='caption')
-                 h3 Hats
-                 p Description of Hats here
-                 p
-                    a(class='btn btn-default', role='button' href='#') See more >>
-     include ./includes/footer.jade
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Sublime Handmades
+    // Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/
+    link(href='css/bootstrap.min.css', rel='stylesheet')
+    // Custom CSS
+    link(href='css/sublime.css', rel='stylesheet')
+    // Custom Fonts
+    link(href='font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+    link(href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet', type='text/css')
+    link(href='https://fonts.googleapis.com/css?family=Pacifico', rel='stylesheet', type='text/css')
+    // jQuery
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+    // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+    // WARNING: Respond.js doesn't work if you view the page via file://
+    //if lt IE 9
+      script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+      script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+  body#page-top.index
+    // Navigation
+    nav.navbar.navbar-default.navbar-fixed-top
+      .container
+        // Brand and toggle get grouped for better mobile display
+        .navbar-header.page-scroll
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          #header-brand.navbar-brand(href='#page-top') Sublime Handmades
+        // Collect the nav links, forms, and other content for toggling
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-right
+            li.page-scroll
+              a(href='#forsale') For Sale
+            li.page-scroll
+              a(href='#gallery') Gallery
+            li.page-scroll
+              a(href='#about') About
+            li.page-scroll
+              a(href='#testimonials') Testimonials
+            li.dropdown
+              a.dropdown-toggle(href='#', role='button', data-toggle='dropdown') Cart 
+                 span.badge 0
+              ul.dropdown-menu
+                 li
+                    a(href='') Item 1
+                 li
+                    a(href='') Item 2
+                 li
+                    a(href='') Item 3
+                 li.divider(role='separator')
+                 li
+                    a(href='') Checkout
+        // /.navbar-collapse
+      // /.container-fluid
+    // Header
+    header
+      .container
+        .row
+          .col-lg-12
+            img.img-responsive(src='img/profile.png', alt='')
+            .intro-text
+              span.name Sublime Handmades
+              hr.star-light
+              span.skills Accessories with high-quality yarns
+    // For Sale Grid Section
+    section#forsale
+      .container
+        .row
+          .col-lg-12.text-center
+            h2 For Sale
+            hr.star-primary
+        .row
+          .col-sm-6.portfolio-item
+            a.portfolio-link(href='#sublimeModal1', data-toggle='modal')
+              .caption
+                .caption-content
+                  i.fa.fa-search-plus.fa-3x
+              img.img-responsive(src='img/portfolio/cabin.png', alt='')
+              h3.text-center Knits
+          .col-sm-6.portfolio-item
+            a.portfolio-link(href='#sublimeModal2', data-toggle='modal')
+              .caption
+                .caption-content
+                  i.fa.fa-search-plus.fa-3x
+              img.img-responsive(src='img/portfolio/cake.png', alt='')
+              h3.text-center Knots 
+    // Gallery Section
+    section#gallery.success
+      .container
+        .row
+          .col-lg-12.text-center
+            h2 Gallery
+            hr.star-light
+        .row
+          .col-sm-4.portfolio-item
+            a.portfolio-link(href='/gallery', data-toggle='modal')
+              .caption
+                .caption-content
+                  i.fa.fa-search-plus.fa-3x
+              img.img-responsive(src='img/portfolio/game.png', alt='')
+          .col-sm-4.portfolio-item
+            a.portfolio-link(href='/gallery', data-toggle='modal')
+              .caption
+                .caption-content
+                  i.fa.fa-search-plus.fa-3x
+              img.img-responsive(src='img/portfolio/safe.png', alt='')
+          .col-sm-4.portfolio-item
+            a.portfolio-link(href='/gallery', data-toggle='modal')
+              .caption
+                .caption-content
+                  i.fa.fa-search-plus.fa-3x
+              img.img-responsive(src='img/portfolio/submarine.png', alt='')
+    // About Section
+    section#about
+      .container
+        .row
+          .col-lg-12.text-center
+            h2 About
+            hr.star-primary
+        .row
+          .col-lg-4.col-lg-offset-2
+            p
+              | I am passionate about everything handmade. Knitting and crocheting for 45 years , I decided to turn my skill into business. Scarfs, shawls, hats are my main interest but I also made baby blankets. I also love to take on custom orders if time permits! 
+          .col-lg-4
+            p
+              | I am only using high quality yarns mostly with animal fibers (sometimes with a little blend of acrylic) as i don't like the feel of acrylic yarns only.
+    // Testimonials Section
+    section#testimonials.success
+      .container
+        .row
+          .col-lg-12.text-center
+            h2 Testimonials
+            hr.star-light
+        .row
+          .col-lg-8.col-lg-offset-2
+             blockquote
+                p "Sublime Handmades is the best!"
+                footer Jennifer from California
+        .row
+          .col-lg-8.col-lg-offset-2
+             blockquote
+                p "The highest quality handmades you can buy on the internet"
+                footer Mariah from Germany
+        .row
+          .col-lg-8.col-lg-offset-2
+             blockquote
+                p "Her service was prompt and courteous. I will buy from them again"
+                footer Elisa from Texas
+    // Contact Section
+    section#contact
+      .container
+        .row
+          .col-lg-12.text-center
+            h2 Contact Me
+            hr.star-primary
+        .row
+          .col-lg-8.col-lg-offset-2
+            // To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.
+            // The form should work on most web servers, but if the form is not working you may need to configure your web server differently.
+            form#contactForm(name='sentMessage', novalidate='')
+              .row.control-group
+                .form-group.col-xs-12.floating-label-form-group.controls
+                  label Name
+                  input#name.form-control(type='text', placeholder='Name', required='', data-validation-required-message='Please enter your name.')
+                  p.help-block.text-danger
+              .row.control-group
+                .form-group.col-xs-12.floating-label-form-group.controls
+                  label Email Address
+                  input#email.form-control(type='email', placeholder='Email Address', required='', data-validation-required-message='Please enter your email address.')
+                  p.help-block.text-danger
+              .row.control-group
+                .form-group.col-xs-12.floating-label-form-group.controls
+                  label Phone Number
+                  input#phone.form-control(type='tel', placeholder='Phone Number', required='', data-validation-required-message='Please enter your phone number.')
+                  p.help-block.text-danger
+              .row.control-group
+                .form-group.col-xs-12.floating-label-form-group.controls
+                  label Message
+                  textarea#message.form-control(rows='5', placeholder='Message', required='', data-validation-required-message='Please enter a message.')
+                  p.help-block.text-danger
+              br
+              #success
+              .row
+                .form-group.col-xs-12
+                  button.btn.btn-success.btn-lg(type='submit') Send
+    // Footer
+    footer.text-center
+      .footer-above
+        .container
+          .row
+            .footer-col.col-md-4
+              h3 Other Things
+            .footer-col.col-md-4
+              h3 Find Me On These Other Sites
+              ul.list-inline
+                li
+                  a.btn-social.btn-outline(href='#')
+                    i.fa.fa-fw.fa-facebook
+                li
+                  a.btn-social.btn-outline(href='#')
+                    i.fa.fa-fw.fa-google-plus
+                li
+                  a.btn-social.btn-outline(href='#')
+                    i.fa.fa-fw.fa-twitter
+                li
+                  a.btn-social.btn-outline(href='#')
+                    i.fa.fa-fw.fa-linkedin
+                li
+                  a.btn-social.btn-outline(href='#')
+                    i.fa.fa-fw.fa-dribbble
+            .footer-col.col-md-4
+              h3 About Sublime Handmades
+              p
+                 a.portfolio-link(href='#sublimeModal1', data-toggle='modal') Shopping Policy
+      .footer-below
+        .container
+          .row
+            .col-lg-12
+              | Copyright © Sublime Handmades 2015
+    // Scroll to Top Button (Only visible on small and extra-small screen sizes)
+    .scroll-top.page-scroll.visible-xs.visible-sm
+      a.btn.btn-primary(href='#page-top')
+        i.fa.fa-chevron-up
+    // Portfolio Modals
+    #sublimeModal1.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        .container
+          .row
+            .col-lg-8.col-lg-offset-2
+              .modal-body
+                h2 Project Title
+                hr.star-primary
+                img.img-responsive.img-centered(src='img/portfolio/cabin.png', alt='')
+                p
+                  | Use this area of the page to describe your project. The icon above is part of a free icon set by 
+                  a(href='https://sellfy.com/p/8Q9P/jV3VZ/') Flat Icons
+                ul.list-inline.item-details
+                  li
+                    | Client:
+                    strong
+                      a(href='http://startbootstrap.com') Start Bootstrap
+                  li
+                    | Date:
+                    strong
+                      a(href='http://startbootstrap.com') April 2014
+                  li
+                    | Service:
+                    strong
+                      a(href='http://startbootstrap.com') Web Development
+                button.btn.btn-default(type='button', data-dismiss='modal')
+                  i.fa.fa-times
+                  |  Close
+    // Bootstrap Core JavaScript
+    script(src='js/bootstrap.min.js')
+    // Plugin JavaScript
+    script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
+    script(src='js/classie.js')
+    script(src='js/cbpAnimatedHeader.js')
+    // Contact Form JavaScript
+    script(src='js/jqBootstrapValidation.js')
+    script(src='js/contact_me.js')
+    // Custom Theme JavaScript
+    script(src='js/sublime.js')
