@@ -11,7 +11,10 @@ html(lang='en')
     link(href='css/sublime.css', rel='stylesheet')
     // Custom Fonts
     link(href='font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
-    link(href='https://fonts.googleapis.com/css?family=EB+Garamond', rel='stylesheet', type='text/css')
+    link(href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet', type='text/css')
+    link(href='https://fonts.googleapis.com/css?family=Pacifico', rel='stylesheet', type='text/css')
+    // jQuery
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
     // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
     // WARNING: Respond.js doesn't work if you view the page via file://
     //if lt IE 9
@@ -28,7 +31,7 @@ html(lang='en')
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand(href='#page-top') Sublime Handmades
+          #header-brand.navbar-brand(href='#page-top') Sublime Handmades
         // Collect the nav links, forms, and other content for toggling
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           ul.nav.navbar-nav.navbar-right
@@ -40,8 +43,8 @@ html(lang='en')
               a(href='#about') About
             li.page-scroll
               a(href='#testimonials') Testimonials
-            li.dropdown-toggle(type='button' data-toggle='dropdown')
-              a(href='') Cart 
+            li.dropdown
+              a.dropdown-toggle(href='#', role='button', data-toggle='dropdown') Cart 
                  span.badge 0
               ul.dropdown-menu
                  li
@@ -50,6 +53,7 @@ html(lang='en')
                     a(href='') Item 2
                  li
                     a(href='') Item 3
+                 li.divider(role='separator')
                  li
                     a(href='') Checkout
         // /.navbar-collapse
@@ -73,52 +77,52 @@ html(lang='en')
             hr.star-primary
         .row
           .col-sm-6.portfolio-item
-            a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
+            a.portfolio-link(href='#sublimeModal1', data-toggle='modal')
               .caption
                 .caption-content
                   i.fa.fa-search-plus.fa-3x
               img.img-responsive(src='img/portfolio/cabin.png', alt='')
               h3.text-center Knits
           .col-sm-6.portfolio-item
-            a.portfolio-link(href='#portfolioModal2', data-toggle='modal')
+            a.portfolio-link(href='#sublimeModal2', data-toggle='modal')
               .caption
                 .caption-content
                   i.fa.fa-search-plus.fa-3x
               img.img-responsive(src='img/portfolio/cake.png', alt='')
               h3.text-center Knots 
     // Gallery Section
-    section#gallery
+    section#gallery.success
       .container
         .row
           .col-lg-12.text-center
             h2 Gallery
-            hr.star-primary
+            hr.star-light
         .row
           .col-sm-4.portfolio-item
-            a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
+            a.portfolio-link(href='/gallery', data-toggle='modal')
               .caption
                 .caption-content
                   i.fa.fa-search-plus.fa-3x
               img.img-responsive(src='img/portfolio/game.png', alt='')
           .col-sm-4.portfolio-item
-            a.portfolio-link(href='#portfolioModal2', data-toggle='modal')
+            a.portfolio-link(href='/gallery', data-toggle='modal')
               .caption
                 .caption-content
                   i.fa.fa-search-plus.fa-3x
               img.img-responsive(src='img/portfolio/safe.png', alt='')
           .col-sm-4.portfolio-item
-            a.portfolio-link(href='#portfolioModal3', data-toggle='modal')
+            a.portfolio-link(href='/gallery', data-toggle='modal')
               .caption
                 .caption-content
                   i.fa.fa-search-plus.fa-3x
               img.img-responsive(src='img/portfolio/submarine.png', alt='')
     // About Section
-    section#about.success
+    section#about
       .container
         .row
           .col-lg-12.text-center
             h2 About
-            hr.star-light
+            hr.star-primary
         .row
           .col-lg-4.col-lg-offset-2
             p
@@ -127,15 +131,27 @@ html(lang='en')
             p
               | I am only using high quality yarns mostly with animal fibers (sometimes with a little blend of acrylic) as i don't like the feel of acrylic yarns only.
     // Testimonials Section
-    section#testimonials
+    section#testimonials.success
       .container
         .row
           .col-lg-12.text-center
             h2 Testimonials
             hr.star-light
         .row
-          .col-lg-4.col-lg-offset-2
-            p
+          .col-lg-8.col-lg-offset-2
+             blockquote
+                p "Sublime Handmades is the best!"
+                footer Jennifer from California
+        .row
+          .col-lg-8.col-lg-offset-2
+             blockquote
+                p "The highest quality handmades you can buy on the internet"
+                footer Mariah from Germany
+        .row
+          .col-lg-8.col-lg-offset-2
+             blockquote
+                p "Her service was prompt and courteous. I will buy from them again"
+                footer Elisa from Texas
     // Contact Section
     section#contact
       .container
@@ -179,11 +195,7 @@ html(lang='en')
         .container
           .row
             .footer-col.col-md-4
-              h3 Shopping Policy
-              p
-                | Morgan Hill, CA
-                br
-                | USA
+              h3 Other Things
             .footer-col.col-md-4
               h3 Find Me On These Other Sites
               ul.list-inline
@@ -205,8 +217,7 @@ html(lang='en')
             .footer-col.col-md-4
               h3 About Sublime Handmades
               p
-                | Description goes here
-                | .
+                 a.portfolio-link(href='#sublimeModal1', data-toggle='modal') Shopping Policy
       .footer-below
         .container
           .row
@@ -217,7 +228,7 @@ html(lang='en')
       a.btn.btn-primary(href='#page-top')
         i.fa.fa-chevron-up
     // Portfolio Modals
-    #portfolioModal1.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+    #sublimeModal1.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
       .modal-content
         .close-modal(data-dismiss='modal')
           .lr
@@ -248,8 +259,6 @@ html(lang='en')
                 button.btn.btn-default(type='button', data-dismiss='modal')
                   i.fa.fa-times
                   |  Close
-    // jQuery
-    script(src='js/jquery.js')
     // Bootstrap Core JavaScript
     script(src='js/bootstrap.min.js')
     // Plugin JavaScript

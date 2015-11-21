@@ -16,16 +16,10 @@ router.get('/', function *index(next) {
     this.body = pageGen({pageTitle:'Sublime Handmades | Home'});
 });
 
-router.get('/contact', function *contact(next) {
+router.get('/gallery', function *about(next) {
     yield next;
-    var pageGen = jade.compileFile('js/contact.jade');
-    this.body = pageGen({pageTitle:'Sublime Handmades | Contact Me'});
-});
-
-router.get('/about', function *about(next) {
-    yield next;
-    var pageGen = jade.compileFile('js/about.jade');
-    this.body = pageGen({pageTitle:'Sublime Handmades | About Me'});
+    var pageGen = jade.compileFile('js/gallery.jade');
+    this.body = pageGen({pageTitle:'Sublime Handmades | Gallery'});
 });
 
 app.use(router.routes());
