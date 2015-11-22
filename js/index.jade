@@ -13,8 +13,6 @@ html(lang='en')
     link(href='assets/css/font-awesome.min.css', rel='stylesheet', type='text/css')
     link(href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet', type='text/css')
     link(href='https://fonts.googleapis.com/css?family=Pacifico', rel='stylesheet', type='text/css')
-    // Custom Icons
-    link(href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.10.1/bootstrap-social.min.css' rel='stylesheet', type='text/css')
     // jQuery
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
     // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
@@ -105,19 +103,19 @@ html(lang='en')
               .caption
                 .caption-content
                   i.fa.fa-search-plus.fa-3x
-              img.img-responsive(src='assets/img/portfolio/game.png', alt='')
+              img.img-responsive(src='assets/img/gallery/sold5.jpg', alt='')
           .col-sm-4.portfolio-item
             a.portfolio-link(href='/gallery', data-toggle='modal')
               .caption
                 .caption-content
                   i.fa.fa-search-plus.fa-3x
-              img.img-responsive(src='assets/img/portfolio/safe.png', alt='')
+              img.img-responsive(src='assets/img/gallery/sold10.jpg', alt='')
           .col-sm-4.portfolio-item
             a.portfolio-link(href='/gallery', data-toggle='modal')
               .caption
                 .caption-content
                   i.fa.fa-search-plus.fa-3x
-              img.img-responsive(src='assets/img/portfolio/submarine.png', alt='')
+              img.img-responsive(src='assets/img/gallery/sold16.jpg', alt='')
     // About Section
     section#about
       .container
@@ -128,7 +126,7 @@ html(lang='en')
         .row
           .col-lg-4.col-lg-offset-2
             p
-              | I am passionate about everything handmade. Knitting and crocheting for 45 years , I decided to turn my skill into business. Scarfs, shawls, hats are my main interest but I also made baby blankets. I also love to take on custom orders if time permits! 
+              | I am passionate about everything handmade. After knitting and crocheting for 45 years , I decided to turn my skill into business. Scarfs, shawls, hats are my main interest but I also made baby blankets. I also love to take on custom orders if time permits! 
           .col-lg-4
             p
               | I am only using high quality yarns mostly with animal fibers (sometimes with a little blend of acrylic) as i don't like the feel of acrylic yarns only.
@@ -197,11 +195,9 @@ html(lang='en')
         .container
           .row
             .footer-col.col-md-4
-              h3 Other Things
+              h3#footer-text Other Things
             .footer-col.col-md-4
-              h3 Find Me On These Other Sites
-              a.btn.btn-social-icon.btn-twitter
-                 span.fa.fa-twitter
+              h3#footer-text Find Me On These Other Sites
               ul.list-inline
                 li
                   a.btn-social.btn-outline(href='#')
@@ -219,9 +215,9 @@ html(lang='en')
                   a.btn-social.btn-outline(href='#')
                     i.fa.fa-fw.fa-dribbble
             .footer-col.col-md-4
-              h3 About Sublime Handmades
+              h3#footer-text About Sublime Handmades
               p
-                 a.portfolio-link(href='#sublimeModal1', data-toggle='modal') Shopping Policy
+                 a(href='#sublimeModal1', data-toggle='modal') Shopping Policy
       .footer-below
         .container
           .row

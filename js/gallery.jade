@@ -6,11 +6,11 @@ html(lang='en')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     title Sublime Handmades
     // Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/
-    link(href='css/bootstrap.min.css', rel='stylesheet')
+    link(href='assets/css/bootstrap.min.css', rel='stylesheet')
     // Custom CSS
-    link(href='css/sublime.css', rel='stylesheet')
+    link(href='assets/css/sublime.css', rel='stylesheet')
     // Custom Fonts
-    link(href='font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+    link(href='assets/css/font-awesome.min.css', rel='stylesheet', type='text/css')
     link(href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet', type='text/css')
     link(href='https://fonts.googleapis.com/css?family=Pacifico', rel='stylesheet', type='text/css')
     // jQuery
@@ -31,18 +31,12 @@ html(lang='en')
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          #header-brand.navbar-brand(href='#page-top') Sublime Handmades
+          #header-brand.navbar-brand(href='/') Sublime Handmades
         // Collect the nav links, forms, and other content for toggling
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           ul.nav.navbar-nav.navbar-right
             li.page-scroll
-              a(href='#forsale') For Sale
-            li.page-scroll
-              a(href='#gallery') Gallery
-            li.page-scroll
-              a(href='#about') About
-            li.page-scroll
-              a(href='#testimonials') Testimonials
+              a(href='/') Home
             li.dropdown
               a.dropdown-toggle(href='#', role='button', data-toggle='dropdown') Cart 
                  span.badge 0
@@ -56,5 +50,30 @@ html(lang='en')
                  li.divider(role='separator')
                  li
                     a(href='') Checkout
-        // /.navbar-collapse
-      // /.container-fluid
+    // Gallery Section
+    header#gallery.success
+      .container
+        .row
+          .col-lg-12.text-center
+            h2 Gallery
+            hr.star-light
+            p This is where I display accessories I have created and sold in the past
+        .row
+          .col-sm-4.portfolio-item
+            a.portfolio-link(href='/gallery', data-toggle='modal')
+              .caption
+                .caption-content
+                  i.fa.fa-search-plus.fa-3x
+              img.img-responsive(src='assets/img/portfolio/game.png', alt='')
+          .col-sm-4.portfolio-item
+            a.portfolio-link(href='/gallery', data-toggle='modal')
+              .caption
+                .caption-content
+                  i.fa.fa-search-plus.fa-3x
+              img.img-responsive(src='assets/img/portfolio/safe.png', alt='')
+          .col-sm-4.portfolio-item
+            a.portfolio-link(href='/gallery', data-toggle='modal')
+              .caption
+                .caption-content
+                  i.fa.fa-search-plus.fa-3x
+              img.img-responsive(src='assets/img/portfolio/submarine.png', alt='')
