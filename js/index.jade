@@ -6,13 +6,15 @@ html(lang='en')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     title Sublime Handmades
     // Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/
-    link(href='css/bootstrap.min.css', rel='stylesheet')
+    link(href='assets/css/bootstrap.min.css', rel='stylesheet')
     // Custom CSS
-    link(href='css/sublime.css', rel='stylesheet')
+    link(href='assets/css/sublime.css', rel='stylesheet')
     // Custom Fonts
-    link(href='font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+    link(href='assets/css/font-awesome.min.css', rel='stylesheet', type='text/css')
     link(href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet', type='text/css')
     link(href='https://fonts.googleapis.com/css?family=Pacifico', rel='stylesheet', type='text/css')
+    // Custom Icons
+    link(href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.10.1/bootstrap-social.min.css' rel='stylesheet', type='text/css')
     // jQuery
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
     // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
@@ -63,7 +65,7 @@ html(lang='en')
       .container
         .row
           .col-lg-12
-            img.img-responsive(src='img/profile.png', alt='')
+            img.img-responsive(src='assets/img/logo.png', alt='')
             .intro-text
               span.name Sublime Handmades
               hr.star-light
@@ -77,18 +79,18 @@ html(lang='en')
             hr.star-primary
         .row
           .col-sm-6.portfolio-item
-            a.portfolio-link(href='#sublimeModal1', data-toggle='modal')
+            a.portfolio-link(href='#', data-toggle='modal')
               .caption
                 .caption-content
                   i.fa.fa-search-plus.fa-3x
-              img.img-responsive(src='img/portfolio/cabin.png', alt='')
+              img.img-responsive(src='assets/img/portfolio/cabin.png', alt='')
               h3.text-center Knits
           .col-sm-6.portfolio-item
-            a.portfolio-link(href='#sublimeModal2', data-toggle='modal')
+            a.portfolio-link(href='#', data-toggle='modal')
               .caption
                 .caption-content
                   i.fa.fa-search-plus.fa-3x
-              img.img-responsive(src='img/portfolio/cake.png', alt='')
+              img.img-responsive(src='assets/img/portfolio/cake.png', alt='')
               h3.text-center Knots 
     // Gallery Section
     section#gallery.success
@@ -103,19 +105,19 @@ html(lang='en')
               .caption
                 .caption-content
                   i.fa.fa-search-plus.fa-3x
-              img.img-responsive(src='img/portfolio/game.png', alt='')
+              img.img-responsive(src='assets/img/portfolio/game.png', alt='')
           .col-sm-4.portfolio-item
             a.portfolio-link(href='/gallery', data-toggle='modal')
               .caption
                 .caption-content
                   i.fa.fa-search-plus.fa-3x
-              img.img-responsive(src='img/portfolio/safe.png', alt='')
+              img.img-responsive(src='assets/img/portfolio/safe.png', alt='')
           .col-sm-4.portfolio-item
             a.portfolio-link(href='/gallery', data-toggle='modal')
               .caption
                 .caption-content
                   i.fa.fa-search-plus.fa-3x
-              img.img-responsive(src='img/portfolio/submarine.png', alt='')
+              img.img-responsive(src='assets/img/portfolio/submarine.png', alt='')
     // About Section
     section#about
       .container
@@ -198,6 +200,8 @@ html(lang='en')
               h3 Other Things
             .footer-col.col-md-4
               h3 Find Me On These Other Sites
+              a.btn.btn-social-icon.btn-twitter
+                 span.fa.fa-twitter
               ul.list-inline
                 li
                   a.btn-social.btn-outline(href='#')
@@ -239,9 +243,9 @@ html(lang='en')
               .modal-body
                 h2 Project Title
                 hr.star-primary
-                img.img-responsive.img-centered(src='img/portfolio/cabin.png', alt='')
+                img.img-responsive.img-centered(src='assets/img/portfolio/cabin.png', alt='')
                 p
-                  | Use this area of the page to describe your project. The icon above is part of a free icon set by 
+                  | Use this area of the page to describe your project.
                   a(href='https://sellfy.com/p/8Q9P/jV3VZ/') Flat Icons
                 ul.list-inline.item-details
                   li
@@ -261,8 +265,6 @@ html(lang='en')
                   |  Close
     // Bootstrap Core JavaScript
     script(src='js/bootstrap.min.js')
-    // Plugin JavaScript
-    script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
     script(src='js/classie.js')
     script(src='js/cbpAnimatedHeader.js')
     // Contact Form JavaScript
