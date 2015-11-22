@@ -1,0 +1,32 @@
+// Portfolio Modals
+#sublimeModal1.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+.modal-content
+  .close-modal(data-dismiss='modal')
+    .lr
+      .rl
+  .container
+    .row
+      .col-lg-8.col-lg-offset-2
+        .modal-body
+          h2 Project Title
+          hr.star-primary
+          img.img-responsive.img-centered(src='assets/img/portfolio/cabin.png', alt='')
+          p
+            | Use this area of the page to describe your project.
+            a(href='https://sellfy.com/p/8Q9P/jV3VZ/') Flat Icons
+          ul.list-inline.item-details
+            li
+              | Client:
+              strong
+                a(href='http://startbootstrap.com') Start Bootstrap
+            li
+              | Date:
+              strong
+                a(href='http://startbootstrap.com') April 2014
+            li
+              | Service:
+              strong
+                a(href='http://startbootstrap.com') Web Development
+          button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
