@@ -12,13 +12,13 @@ var app = koala({
 
 router.get('/', function *index(next) {
     yield next;
-    var pageGen = jade.compileFile('js/index.jade');
+    var pageGen = jade.compileFile('templates/index.jade');
     this.body = pageGen({pageTitle:'Sublime Handmades | Home'});
 });
 
 router.get('/gallery', function *about(next) {
     yield next;
-    var pageGen = jade.compileFile('js/gallery.jade');
+    var pageGen = jade.compileFile('templates/gallery.jade');
     this.body = pageGen({pageTitle:'Sublime Handmades | Gallery'});
 });
 
