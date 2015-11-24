@@ -1,15 +1,22 @@
 const jade = require('jade');
 const koala = require('koala');
 const router = require('koa-router')();
+const env = require('habitat');
 
 console.log('Starting up...')
 
+// Load environment variables
+var aws = env.load('.env/aws.conf');
+
+// Set up koala
 var app = koala({
     fileServer: {
         maxAge: '1 minute'
     }
 });
 
+
+// Configure routes
 router.get('/', function *index(next) {
     yield next;
     var pageGen = jade.compileFile('templates/index.jade');
