@@ -13,17 +13,18 @@ var app = koala({
     }
 });
 
-
 // Configure routes
-router.get('/', function *index(next) {
-    yield next;
+router.get('/', function *index() {
     var pageGen = jade.compileFile('templates/index.jade');
+    this.type = 'html';
+    this.status = 200;
     this.body = pageGen({pageTitle:'Sublime Handmades | Home'});
 });
 
-router.get('/gallery', function *about(next) {
-    yield next;
+router.get('/gallery', function *about() {
     var pageGen = jade.compileFile('templates/gallery.jade');
+    this.type = 'html';
+    this.status = 200;
     this.body = pageGen({pageTitle:'Sublime Handmades | Gallery'});
 });
 
