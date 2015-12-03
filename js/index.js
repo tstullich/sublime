@@ -15,10 +15,12 @@ var app = koala({
 
 // Configure routes
 router.get('/', function *index() {
+    var t = yield dbClient.setItem('test1.png', 'The Best Title', 'The Best Item in the Store');
+    console.log(t);
     var pageGen = jade.compileFile('templates/index.jade');
     this.type = 'html';
     this.status = 200;
-    this.body = pageGen({pageTitle:'Sublime Handmades | Home'});
+    this.body = pageGen({pageTitle:'Sublime Handmades | Gallery'});
 });
 
 router.get('/gallery', function *about() {
