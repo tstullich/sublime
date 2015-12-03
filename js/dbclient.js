@@ -1,5 +1,8 @@
+const bluebird = require('bluebird');
 const env = require('habitat');
 const redis = require('redis');
+
+bluebird.promisifyAll(redis);
 
 var dbclient = module.exports = {};
 
@@ -17,16 +20,16 @@ dbclient.setItem = function(img_name, title, testimonial) {
     client.quit();
 }
 
+
 dbclient.getItem = function(img_name) {
     var client = redis.createClient(config.port, config.address);
-    client.hmget(img_name, 'title', 'testimonial', function(err, reply) {
-        if (err) {
-            console.log('[REDIS] ' + err);
-        }
-        else {
-            console.log('[REDIS] GET Response: ' + reply[0]);
-            console.log('[REDIS] GET Response: ' + reply[1]);
-        }
-        client.quit();
+    return client.hmgetAsync(img_name, 'title', 'testimonial')
+    .then(function(reply) {
+        console.log('[SUCCESS]: ' + reply);
+        var result = reply;
+        return result;
+    })
+    .catch(function(err) {
+        console.log('[ERROR]' + err);
     });
 }
