@@ -1,8 +1,7 @@
 const jade = require('jade');
 const koala = require('koala');
 const router = require('koa-router')();
-const dbClient = require('./js/dbclient');
-// const env = require('habitat');
+const db = require('./js/dbclient');
 
 console.log('Starting up...')
 
@@ -15,8 +14,9 @@ var app = koala({
 
 // Configure routes
 router.get('/', function *index() {
-    var t = yield dbClient.setItem('test1.png', 'The Best Title', 'The Best Item in the Store');
-    console.log(t);
+    var t = yield db.setItem('test1.png', 'The Best Title');
+    var s = yield db.getItem(10);
+    console.log(s);
     var pageGen = jade.compileFile('templates/index.jade');
     this.type = 'html';
     this.status = 200;
