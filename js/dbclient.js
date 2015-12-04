@@ -8,18 +8,19 @@ var dbclient = module.exports = {};
 
 var config = env.load('.env/redis-cli.conf');
 
-function getID() {
+// Creates a new item ID every time this function is called
+function getNewID() {
     var client = redis.createClient(config.port, config.address);
     // Increment the item_ID field to create a new ID
     return client.incrAsync('item_ID')
     .then(function(reply) {
         client.quit();
-        var result = reply;
-        return result;
+        var id = reply;
+        return id;
     })
     .catch(function(err) {
         client.quit();
-        console.log('[REDIS] ERROR:' + err);
+        console.log('[REDIS] %', err);
     });
 }
 
@@ -31,11 +32,9 @@ dbclient.setItem = function*(imgName, title, testimonial) {
         return false;
     }
     testimonial = typeof testimonial !== 'undefined' ? testimonial : '';
-    console.log('HMSET Params: %s %s %s', imgName, title, testimonial);
 
     var client = redis.createClient(config.port, config.address);
-    var itemID = yield getID();
-    console.log('[REDIS] New Item ID: %s', itemID);
+    var itemID = yield getNewID();
     // Testimonials are optional so we need to determine how we set the data
     return client.hmsetAsync(itemID, 'imgName', imgName, 'title', title, 'testimonial', testimonial)
     .then(function() {
@@ -50,7 +49,7 @@ dbclient.setItem = function*(imgName, title, testimonial) {
         client.quit();
     })
     .catch(function(err) {
-        console.log('[REDIS] ERROR: %s',  err);
+        console.log('[REDIS] %s',  err);
         client.quit();
         return false;
     });
