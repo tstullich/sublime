@@ -1,7 +1,7 @@
 const jade = require('jade');
 const koala = require('koala');
 const router = require('koa-router')();
-const dbClient = require('./dbclient');
+const dbClient = require('./js/dbclient');
 // const env = require('habitat');
 
 console.log('Starting up...')
