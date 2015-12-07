@@ -63,18 +63,11 @@ dbclient.getItem = function*(itemID) {
     }
 
     var client = redis.createClient(config.port, config.address);
-    return client.hmgetAsync(itemID, 'imgName', 'title', 'testimonial')
+    return client.hgetallAsync(itemID)
     .then(function(reply) {
         console.log('[REDIS] GET ITEM reply: %s', reply);
         client.quit();
-
-        // This is terrible and I hate it. Need to change this ASAP
-        // TODO Implement HGETALL instead of HMGET to solve this
-        var result = {};
-        result['imgName'] = reply[0];
-        result['title'] = reply[1];
-        result['testimonial'] = reply[2] !== null ? reply[2] : 'N/A';
-        return JSON.stringify(result); // wrapping our reply to JSON
+        return JSON.stringify(reply); // transform our reply to JSON before returning
     })
     .catch(function(err) {
         console.log('[REDIS] %s', err);
