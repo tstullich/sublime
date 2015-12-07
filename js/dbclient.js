@@ -65,9 +65,8 @@ dbclient.getItem = function*(itemID) {
     var client = redis.createClient(config.port, config.address);
     return client.hgetallAsync(itemID)
     .then(function(reply) {
-        console.log('[REDIS] GET ITEM reply: %s', reply);
         client.quit();
-        return JSON.stringify(reply); // transform our reply to JSON before returning
+        return reply; // transform our reply to JSON before returning
     })
     .catch(function(err) {
         console.log('[REDIS] %s', err);
@@ -81,12 +80,12 @@ dbclient.getItem = function*(itemID) {
  * Think of the list as a stack rather than a traditional list.
  * TODO will need to implement some bounds-checking since Redis does not do this by default
  */
-dbclient.getItemIDs = function*(startIndex, numItems) {
+dbclient.getItemIDs = function*(startIndex, endIndex) {
     var client = redis.createClient(config.port, config.address);
-    return client.lrangeAsync('item_list', startIndex, numItems - 1)
+    return client.lrangeAsync('item_list', startIndex, endIndex)
     .then(function(reply) {
         client.quit();
-        return JSON.stringify(reply);
+        return reply;
     })
     .catch(function(err) {
         console.log('[REDIS] %s' + err);
@@ -100,8 +99,8 @@ dbclient.deleteItem = function*(itemID) {
     var client = redis.createClient(config.port, config.address);
     // We will first delete the hash key that has our values mapped to it
     return client.delAsync(itemID)
-    .then(function(reply) {
-        console.log('[REDIS] Removed hashed object: %s', reply);
+    .then(function() {
+        console.log('[REDIS] Removed hashed object');
         // Removing the item from our list of up-to-date item IDs
         return client.lremAsync('item_list', 1, itemID)
         .then(function(reply) {
