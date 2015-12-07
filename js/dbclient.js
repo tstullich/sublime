@@ -31,11 +31,11 @@ dbclient.setItem = function*(imgName, title, testimonial) {
         console.log('[REDIS] ERROR: Not enough parameters defined. Cannot perform SET.');
         return false;
     }
+    // Testimonials are optional so we need to check if it has been defined
     testimonial = typeof testimonial !== 'undefined' ? testimonial : '';
 
     var client = redis.createClient(config.port, config.address);
     var itemID = yield getNewID();
-    // Testimonials are optional so we need to determine how we set the data
     return client.hmsetAsync(itemID, 'imgName', imgName, 'title', title, 'testimonial', testimonial)
     .then(function() {
         return client.lpushAsync('item_list', itemID) // Need to push new ID to list of items
@@ -59,15 +59,17 @@ dbclient.setItem = function*(imgName, title, testimonial) {
 dbclient.getItem = function*(itemID) {
     if (typeof itemID === undefined) {
         console.log('[REDIS] ERROR: Not enough parameters defined. Cannot perform GET');
+        return null;
     }
 
     var client = redis.createClient(config.port, config.address);
     return client.hmgetAsync(itemID, 'imgName', 'title', 'testimonial')
     .then(function(reply) {
-        console.log('[REDIS] GET ITEM reply: ' + reply);
+        console.log('[REDIS] GET ITEM reply: %s', reply);
         client.quit();
 
         // This is terrible and I hate it. Need to change this ASAP
+        // TODO Implement HGETALL instead of HMGET to solve this
         var result = {};
         result['imgName'] = reply[0];
         result['title'] = reply[1];
@@ -75,7 +77,54 @@ dbclient.getItem = function*(itemID) {
         return JSON.stringify(result); // wrapping our reply to JSON
     })
     .catch(function(err) {
-        console.log('[REDIS] ERROR: ' + err);
+        console.log('[REDIS] %s', err);
         client.quit();
+    });
+}
+
+/* Queries the database to find a range of item IDs and returns it in a JSON object
+ * The reply will return the items from the most recent item pushed into the
+ * list, which means that a startIndex at 0 will return the most recent item.
+ * Think of the list as a stack rather than a traditional list.
+ * TODO will need to implement some bounds-checking since Redis does not do this by default
+ */
+dbclient.getItemIDs = function*(startIndex, numItems) {
+    var client = redis.createClient(config.port, config.address);
+    return client.lrangeAsync('item_list', startIndex, numItems - 1)
+    .then(function(reply) {
+        client.quit();
+        return JSON.stringify(reply);
+    })
+    .catch(function(err) {
+        console.log('[REDIS] %s' + err);
+        client.quit();
+    });
+}
+
+// Removes an item from the database based on the item id
+// Returns a boolean to indicate if the two operations succeeded
+dbclient.deleteItem = function*(itemID) {
+    var client = redis.createClient(config.port, config.address);
+    // We will first delete the hash key that has our values mapped to it
+    return client.delAsync(itemID)
+    .then(function(reply) {
+        console.log('[REDIS] Removed hashed object: %s', reply);
+        // Removing the item from our list of up-to-date item IDs
+        return client.lremAsync('item_list', 1, itemID)
+        .then(function(reply) {
+            console.log('[REDIS] Removed ID from list')
+            client.quit();
+            return true;
+        })
+        .catch(function(err) {
+            console.log('[REDIS] %s', err);
+            client.quit();
+            return false;
+        });
+    })
+    .catch(function(err) {
+        console.log('[REDIS] %s', err);
+        client.quit();
+        return false;
     });
 }
