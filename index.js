@@ -14,9 +14,9 @@ var app = koala({
 
 // Configure routes
 router.get('/', function *index() {
-//    var t = yield db.setItem('test1.png', 'The Best Title');
-//    var s = yield db.getItem(10);
-//    console.log(s);
+    var t = yield db.setItem('test1.png', 'The Best Title');
+    var s = yield db.getItem(10);
+    console.log(s);
     var pageGen = jade.compileFile('templates/index.jade');
     this.type = 'html';
     this.status = 200;
