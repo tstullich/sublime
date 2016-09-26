@@ -8,3 +8,4 @@
 /less/*
 *.gz
 *.rdb
+.DS_STORE
