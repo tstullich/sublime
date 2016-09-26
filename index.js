@@ -1,4 +1,4 @@
-const jade = require('jade');
+const pug = require('pug');
 const koala = require('koala');
 const router = require('koa-router')();
 const db = require('./js/dbclient');
@@ -14,17 +14,14 @@ var app = koala({
 
 // Configure routes
 router.get('/', function *index() {
-    var t = yield db.setItem('test1.png', 'The Best Title');
-    var s = yield db.getItem(10);
-    console.log(s);
-    var pageGen = jade.compileFile('templates/index.jade');
+    var pageGen = pug.compileFile('templates/index.pug');
     this.type = 'html';
     this.status = 200;
     this.body = pageGen({pageTitle:'Sublime Handmades | Gallery'});
 });
 
 router.get('/gallery', function *about() {
-    var pageGen = jade.compileFile('templates/gallery.jade');
+    var pageGen = pug.compileFile('templates/gallery.pug');
     this.type = 'html';
     this.status = 200;
     this.body = pageGen({pageTitle:'Sublime Handmades | Gallery'});
